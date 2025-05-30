@@ -6,11 +6,10 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using PizzaAPI.Middleware;
 using PizzaAPI.Data.Repos;
-using PizzaAPI.Core.Services;
 using Azure.Identity;
-using PizzaAPI.Core.Interfaces;
+using PizzaAPI.Data.Services;
+using PizzaAPI.Data.Helpers;
 
 
 namespace PizzaAPI
@@ -36,7 +35,7 @@ namespace PizzaAPI
 
             builder.Services.AddDbContext<PizzaContext>(options =>
     options.UseSqlServer(
-        builder.Configuration["ConnectionString"],
+        builder.Configuration["connectionstring"],
         sqlOptions =>
         { // För cold starts på Azure SQL Database
             sqlOptions.EnableRetryOnFailure(
@@ -54,7 +53,7 @@ namespace PizzaAPI
             builder.Services.AddScoped<IOrderRepo, OrderRepo>();
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IOrderRepo, OrderRepo>();
-            builder.Services.AddScoped<JwtExtension>();
+            builder.Services.AddScoped<Jwt>();
 
             #region Swagger & JWT
             // jwt konfigurering

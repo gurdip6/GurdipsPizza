@@ -1,11 +1,10 @@
 ﻿using Microsoft.Identity.Client;
-using PizzaAPI.Core.Interfaces;
 using PizzaAPI.Data.DTOs;
 using PizzaAPI.Data.Entities;
 using PizzaAPI.Data.Interfaces;
 using System.Security.Claims;
 
-namespace PizzaAPI.Core.Services
+namespace PizzaAPI.Data.Services
 {
     public class OrderService : IOrderService
     {

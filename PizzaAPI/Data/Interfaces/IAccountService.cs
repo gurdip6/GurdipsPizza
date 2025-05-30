@@ -1,7 +1,7 @@
 ﻿using PizzaAPI.Data.DTOs;
 using PizzaAPI.Data.Entities;
 
-namespace PizzaAPI.Core.Interfaces
+namespace PizzaAPI.Data.Interfaces
 {
     public interface IAccountService
     {

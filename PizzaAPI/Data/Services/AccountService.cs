@@ -1,17 +1,16 @@
-﻿using PizzaAPI.Core.Interfaces;
-using PizzaAPI.Data.DTOs;
+﻿using PizzaAPI.Data.DTOs;
 using PizzaAPI.Data.Entities;
+using PizzaAPI.Data.Helpers;
 using PizzaAPI.Data.Interfaces;
 using PizzaAPI.Data.Repos;
-using PizzaAPI.Middleware;
 
-namespace PizzaAPI.Core.Services
+namespace PizzaAPI.Data.Services
 {
     public class AccountService : IAccountService
     {
         private readonly IAccountRepo _accountRepo;
-        private readonly JwtExtension _jwtExtension;
-        public AccountService(IAccountRepo accountRepo, JwtExtension jwtExtension)
+        private readonly Jwt _jwtExtension;
+        public AccountService(IAccountRepo accountRepo, Jwt jwtExtension)
         {
             _accountRepo = accountRepo;
             _jwtExtension = jwtExtension;

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PizzaAPI.Core.Interfaces;
 using PizzaAPI.Data.DTOs;
 using PizzaAPI.Data.Entities;
+using PizzaAPI.Data.Interfaces;
 using System.Security.Claims;
 
 namespace PizzaAPI.Controllers
@@ -24,7 +24,7 @@ namespace PizzaAPI.Controllers
             try
             {
                 string token = await _accountService.Register(accountEntity);
-                return Ok(token);
+                return Ok("Du har nu registrerat");
             }
             catch (Exception ex)
             {
@@ -39,30 +39,6 @@ namespace PizzaAPI.Controllers
             {
                 string token = await _accountService.Login(loginDTO);
                 return Ok(token);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("me")]
-        [Authorize]
-        public async Task<IActionResult> Me()
-        {
-            try
-            {
-                string accountid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                string username = User.FindFirst(ClaimTypes.Name)?.Value;
-                string email = User.FindFirst(ClaimTypes.Email)?.Value;
-                string phone = User.FindFirst(ClaimTypes.MobilePhone)?.Value;
-                return Ok(new
-                {
-                    AccountID = accountid,
-                    Username = username,
-                    Email = email,
-                    Phone = phone
-                });
             }
             catch (Exception ex)
             {

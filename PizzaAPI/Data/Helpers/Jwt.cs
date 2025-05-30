@@ -4,16 +4,16 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace PizzaAPI.Middleware
+namespace PizzaAPI.Data.Helpers
 {
-    public class JwtExtension
+    public class Jwt
     {
         private readonly IConfiguration _configuration;
         private readonly string? _key;
         private readonly string? _issuer;
         private readonly string? _audience;
 
-        public JwtExtension(IConfiguration configuration)
+        public Jwt(IConfiguration configuration)
         {
             _configuration = configuration;
             _key = configuration.GetValue<string>("JWT:Key");
